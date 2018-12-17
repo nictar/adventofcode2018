@@ -1,4 +1,4 @@
-def get_freq(file_object):
+def day_1(file_object):
     total_freq = 0
 
     for line in file_object:
@@ -10,10 +10,11 @@ def get_freq(file_object):
         else:
             total_freq -= curr_freq
 
-    print(total_freq)
+    print('Total frequency of input (part 1): ' + str(total_freq))
 
 
-filename = 'input.txt'
-fl = open(filename, 'r')
-get_freq(fl)
-fl.close()
+if __name__ == "__main__":
+    filename = 'input.txt'
+    fl = open(filename, 'r')
+    day_1(fl)
+    fl.close()
