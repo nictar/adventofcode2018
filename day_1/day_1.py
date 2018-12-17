@@ -1,10 +1,15 @@
-def day_1(file_object):
+def part_1(file_object):
     total_freq = 0
 
     for line in file_object:
         total_freq += parse_frequency(line)
 
     print('Total frequency of input (part 1): ' + str(total_freq))
+
+
+def part_2(file_object):
+    print('First duplicate frequency (part 2): ')
+
 
 def parse_frequency(line):
     curr_sign = line.strip()[0]
@@ -17,5 +22,6 @@ def parse_frequency(line):
 if __name__ == "__main__":
     filename = 'input.txt'
     fl = open(filename, 'r')
-    day_1(fl)
+    part_1(fl)
+    part_2(fl)
     fl.close()
