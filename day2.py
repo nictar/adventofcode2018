@@ -19,8 +19,8 @@ def day_2(fl):
     print('Part 1: ' + str(two_counter * three_counter))
 
     # Part 2
-    test = combinations(box_ids, 2)
-    for a, b in test:
+    id_combos = combinations(box_ids, 2)
+    for a, b in id_combos:
         differ_counter = 0
         differ_index = 0
 
@@ -43,6 +43,22 @@ def day_2(fl):
             print('Part 2: ', end='')
             print(*answer, sep='')
             break
+
+    # another Part 2 alternative solution with less library functions
+    # for id1 in box_ids:
+    #     for id2 in box_ids:
+    #         diff_counter = 0
+    #         for i in range(len(id1)):
+    #             if id1[i] != id2[i]:
+    #                 diff_counter += 1
+            
+    #         if diff_counter == 1:
+    #             answer = []
+    #             for i in range(len(id1)):
+    #                 if id1[i] == id2[i]:
+    #                     answer.append(id1[i])
+    #             print('Part 2: ' + ''.join(answer))
+    #             return
 
 
 if __name__ == "__main__":
