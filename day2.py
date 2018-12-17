@@ -3,9 +3,10 @@ from itertools import combinations
 
 def day_2(fl):
     box_ids = [x for x in fl.split()]
+
+    # Part 1
     two_counter = 0
     three_counter = 0
-
     for box_id in box_ids:
         seen = defaultdict(int)
         for letter in box_id:
@@ -15,8 +16,7 @@ def day_2(fl):
             two_counter += 1
         if 3 in seen.values():
             three_counter += 1
-
-    print(two_counter * three_counter)
+    print('Part 1: ' + str(two_counter * three_counter))
 
     # Part 2
     test = combinations(box_ids, 2)
@@ -40,6 +40,7 @@ def day_2(fl):
         # found the two strings with only one different character
         if differ_counter == 1:
             answer = [a[i] for i in range(len(a)) if i != differ_index]
+            print('Part 2: ', end='')
             print(*answer, sep='')
             break
 
