@@ -1,10 +1,6 @@
-def part_1(file_object):
-    total_freq = 0
-
-    for line in file_object:
-        total_freq += int(line)
-
-    print('Total frequency of input (part 1): ' + str(total_freq))
+def part_1(fl):
+    data = [int(x) for x in fl.split()]
+    print('Total frequency of input (part 1): ' + str(sum(data)))
 
 
 def part_2(file_object):
@@ -30,7 +26,6 @@ def part_2(file_object):
 if __name__ == "__main__":
     filename = 'input.txt'
     fl = open(filename, 'r')
-    part_1(fl)
-    fl.seek(0)
-    part_2(fl)
+    part_1(fl.read())
+    # part_2(fl)
     fl.close()
