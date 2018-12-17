@@ -31,5 +31,6 @@ if __name__ == "__main__":
     filename = 'input.txt'
     fl = open(filename, 'r')
     part_1(fl)
+    fl.seek(0)
     part_2(fl)
     fl.close()
