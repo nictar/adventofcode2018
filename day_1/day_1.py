@@ -1,14 +1,13 @@
 from itertools import cycle
 
-def part_1(fl):
+def day_1(fl):
     data = [int(x) for x in fl.split()]
+
+    # Part 1
     print('Total frequency of input (part 1): ' + str(sum(data)))
 
-
-def part_2(fl):
-    data = [int(x) for x in fl.split()]
+    # Part 2
     duplicate_freq = 0
-
     cumulative_freq = 0
     seen = {0}
     for freq in cycle(data):
@@ -24,7 +23,5 @@ def part_2(fl):
 if __name__ == "__main__":
     filename = 'input.txt'
     fl = open(filename, 'r')
-    part_1(fl.read())
-    fl.seek(0)
-    part_2(fl.read())
+    day_1(fl.read())
     fl.close()
