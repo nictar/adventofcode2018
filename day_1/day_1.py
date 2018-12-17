@@ -8,7 +8,23 @@ def part_1(file_object):
 
 
 def part_2(file_object):
-    print('First duplicate frequency (part 2): ')
+    cumulative_freq = 0
+    duplicate_freq  = 0
+    frequencies = []
+
+    for line in file_object:
+        cumulative_freq += parse_frequency(line)
+        frequencies.append(cumulative_freq)
+
+    adder = frequencies[-1]
+    for freq in frequencies:
+        new_freq = freq + adder
+        if new_freq in frequencies:
+            duplicate_freq = new_freq
+            break
+        frequencies.append(new_freq)
+
+    print('First duplicate frequency (part 2): ' + str(duplicate_freq))
 
 
 def parse_frequency(line):
