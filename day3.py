@@ -1,30 +1,21 @@
+from collections import defaultdict
+
 def day_3(fl):
-    data = [x for x in fl.split('\n')]
     overlaps = 0
 
-    x_off, y_off, width, height = parse_line(data[0])
+    for line in fl:
+        # parse the x and y-offsets, and the width and height of the claim
+        x, y = line.split()[2].split(',')
+        x, y = int(x), int(y[:-1])
+        width, height = line.split()[3].split('x')
+        width, height = int(width), int(height)
+        # print(str(x), str(y), str(width), str(height))
 
     print('Part 1: ' + str(overlaps))
 
 
-def parse_line(line):
-    offsets = line.split()[2].replace(':', ',')
-    x_offset = int(offsets.split(',')[0])
-    y_offset = int(offsets.split(',')[1])
-
-    width = int(line.split()[3].split('x')[0])
-    height = int(line.split()[3].split('x')[1])
-
-    # print(x_offset)
-    # print(y_offset)
-    # print(width)
-    # print(height)
-
-    return (x_offset, y_offset, width, height)
-
-
 if __name__ == "__main__":
-    filename = 'day3_input.txt'
+    filename = 'test-input.txt'
     fl = open(filename, 'r')
-    day_3(fl.read())
+    day_3(fl)
     fl.close()
