@@ -25,11 +25,13 @@ def day_3(fl):
                     intersect[id_] = True
                     intersect[ids[(x+i), (y+j)]] = True
 
+    # Part 1
     for v in area.values():
         if v > 1:
             overlaps += 1
     print('Part 1: ' + str(overlaps))
 
+    # Part 2
     for k, v in intersect.items():
         if not v:
             print('Part 2: ' + str(k))

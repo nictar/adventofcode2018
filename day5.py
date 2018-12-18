@@ -4,7 +4,7 @@ def day_5(fl):
 
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
-    # courtesy of /u/andreyrmg (holy cow)
+    # courtesy of /u/andreyrmg (holy Python list comprehension)
     shortest = min(react_polymer(unit for unit in data if unit.lower() != letter) for letter in alphabet)
     print('Part 2: ' + str(shortest))
 
@@ -12,6 +12,9 @@ def day_5(fl):
 def react_polymer(string):
     answer = ['.']
 
+    # one pointer keeps on moving forward, meanwhile the other one refers back
+    # to the stack, popping items as necessary if a duplicate after a duplicate
+    # is found.
     for unit in string:
         x = answer[-1]
         if unit.swapcase() == x:
