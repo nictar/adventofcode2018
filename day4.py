@@ -26,9 +26,10 @@ def day_4(fl):
                 for min_ in range(start_sleep, minute):
                     minutes[(curr_guard, min_)] += 1
 
-    # chosen guard is the one with the highest sleeping time (ironic)
+    # chosen guard according to strategy 1
     chosen_guard = max(guards, key=guards.get)
 
+    # chosen minute according to strategy 1
     most = 0
     for (g, m), v in minutes.items():
         if g == chosen_guard:
@@ -38,9 +39,12 @@ def day_4(fl):
 
     print('Part 1: ' + str(int(chosen_guard) * chosen_minute))
 
+    # chosen guard and minute according to strategy 2
+    chosen_guard, chosen_minute = max(minutes, key=minutes.get)
+    print('Part 2: ' + str(int(chosen_guard) * chosen_minute))
+
 
 if __name__ == "__main__":
-    # filename = 'test_input.txt'
     filename = 'day4_input.txt'
     fl = open(filename, 'r')
     day_4(fl.read())
