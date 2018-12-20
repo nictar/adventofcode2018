@@ -15,9 +15,15 @@ def day_6(fl):
     # count the 'area' of each coordinate, taking note of 'infinite' ones
     areas = defaultdict(int)
     infinites = [(-1,-1)]
+    safe = 0                    # part 2: count number of 'safe' points
     for x in range(max_x+1):
         for y in range(max_y+1):
             nearest = get_nearest((x,y), coordinates)
+
+            # part 2
+            total_dist = sum(dist((x,y), c) for c in coordinates)
+            if total_dist < 10000:
+                safe += 1
 
             # exclude coordinates that are closest to infinite points
             if x in (0, max_x) or y in (0, max_y):
@@ -28,6 +34,7 @@ def day_6(fl):
                 areas[nearest] += 1
 
     print(f'Part 1: {max(v for k,v in areas.items() if k not in infinites)}')
+    print(f'Part 2: {safe}')
 
 
 def get_nearest(point, coordinates):
@@ -47,7 +54,6 @@ def dist(c1, c2):
 
 if __name__ == "__main__":
     filename = 'day6_input.txt'
-    # filename = 'test_input.txt'
     fl = open(filename, 'r')
     day_6(fl)
     fl.close()
