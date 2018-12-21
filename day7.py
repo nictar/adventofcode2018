@@ -1,4 +1,6 @@
 from collections import defaultdict
+import copy
+import string
 
 def day_7(fl):
     # parse input and store its information
@@ -9,10 +11,12 @@ def day_7(fl):
         node_tuples.append((p,c))
 
     graph = Graph(node_tuples)
-    topo_sort = graph.get_topo_sort()
+    topo = graph.topo_sort()
+    t = graph.topo_distributed()
+    # graph.print_graph()
 
-    print(f'Part 1: {"".join([x.value for x in topo_sort])}')
-    print('Part 2: ')
+    print(f'Part 1: {"".join([x.value for x in topo])}')
+    print(f'Part 2: {t}')
 
 class Graph():
     def __init__(self, node_tuples):
@@ -50,12 +54,13 @@ class Graph():
                 return node
         return None
 
-    def get_topo_sort(self):
+    def topo_sort(self):
         output = []
         ready = []
 
         # find nodes that are already ready to begin
-        for node in self.nodes:
+        nodes_copy = copy.deepcopy(self.nodes)
+        for node in nodes_copy:
             if not node.parents:
                 ready.append(node)
 
@@ -72,6 +77,43 @@ class Graph():
                     ready.append(child)
 
         return output
+
+    def topo_distributed(self):
+        alphabet = list(string.ascii_uppercase)
+        num_workers = 2
+        time_offset = 0
+
+        # prepare the workers
+        workers = {}
+        for i in range(num_workers):
+            workers[i+1] = []
+
+        output = []
+        ready = []
+
+        # find nodes that are already ready to begin
+        nodes_copy = copy.deepcopy(self.nodes)
+        for node in nodes_copy:
+            if not node.parents:
+                ready.append(node)
+
+        time = 0
+
+        # Kahn's algorithm
+        while ready:
+            # alphabetically sort the nodes
+            for i in range(len(ready)):
+                p = sorted(ready, key=lambda c: c.value)[i]
+                workers[i+1].extend([p] * (alphabet.index(p.value)+1))
+
+            ready.remove(p)
+            output.append(p)
+            for child in p.children:
+                child.parents.remove(p)
+                if not child.parents:
+                    ready.append(child)
+        
+        return time
 
     def print_graph(self):
         """Prints each node with its parents and children."""
@@ -92,8 +134,8 @@ class Node():
 
 
 if __name__ == "__main__":
-    filename = 'day7_input.txt'
-    # filename = 'test_input.txt'
+    # filename = 'day7_input.txt'
+    filename = 'test_input.txt'
     fl = open(filename, 'r')
     day_7(fl)
     fl.close()
