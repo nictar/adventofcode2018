@@ -13,7 +13,6 @@ def day_7(fl):
     graph = Graph(node_tuples)
     topo = graph.topo_sort()
     t = graph.topo_distributed()
-    # graph.print_graph()
 
     print(f'Part 1: {"".join([x.value for x in topo])}')
     print(f'Part 2: {t}')
@@ -80,47 +79,56 @@ class Graph():
 
     def topo_distributed(self):
         alphabet = list(string.ascii_uppercase)
-        num_workers = 2
-        time_offset = 0
+        num_workers = 5
+        time_offset = 60
 
-        # prepare the workers
+        # initialise the workers
         workers = {}
         for i in range(num_workers):
-            workers[i+1] = []
+            workers[i] = []
 
-        output = []
+        # find works that are already ready to begin
         ready = []
-
-        # find nodes that are already ready to begin
         nodes_copy = copy.deepcopy(self.nodes)
         for node in nodes_copy:
             if not node.parents:
                 ready.append(node)
 
         time = 0
+        output = []
+        ongoing = []
+        while ready or ongoing:
+            # assign ready work to available workers
+            for i in range(num_workers):
+                if ready:
+                    if not workers[i]:
+                        p = sorted(ready, key=lambda c: c.value)[0]
+                        workers[i].extend([p] * (alphabet.index(p.value)+1+time_offset))
+                        ready.remove(p)
+                        ongoing.append(p)
+                else:
+                    break
 
-        # Kahn's algorithm
-        while ready:
-            # alphabetically sort the nodes
-            for i in range(len(ready)):
-                p = sorted(ready, key=lambda c: c.value)[i]
-                workers[i+1].extend([p] * (alphabet.index(p.value)+1))
+            # check if any of the workers is done with their assigned work
+            for i in range(num_workers):
+                if len(workers[i]) == 1:
+                    done = workers[i].pop()
+                    ongoing.remove(done)
+                    output.append(done)
 
-            ready.remove(p)
-            output.append(p)
-            for child in p.children:
-                child.parents.remove(p)
-                if not child.parents:
-                    ready.append(child)
-        
+                    for child in done.children:
+                        child.parents.remove(done)
+                        if not child.parents:
+                            ready.append(child)
+
+            # continue doing unfinished work
+            for i in range(num_workers):
+                if workers[i]:
+                    workers[i].pop()
+
+            time += 1
+
         return time
-
-    def print_graph(self):
-        """Prints each node with its parents and children."""
-        for node in self.nodes:
-            print(node.value, end=' ')
-            print(f'p({[p.value for p in node.parents]})', end=' ')
-            print(f'c({[c.value for c in node.children]})')
 
 class Node():
     def __init__(self, value=None):
@@ -134,8 +142,7 @@ class Node():
 
 
 if __name__ == "__main__":
-    # filename = 'day7_input.txt'
-    filename = 'test_input.txt'
+    filename = 'day7_input.txt'
     fl = open(filename, 'r')
     day_7(fl)
     fl.close()
