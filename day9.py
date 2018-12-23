@@ -3,12 +3,17 @@ from collections import defaultdict, deque
 def day_9(fl):
     data = fl.readline().strip().split()
     max_player = int(data[0])
+
+    # uncomment the line below for part 1, and comment the line below it
     max_marble = int(data[-2])
+
+    # uncomment the line below for part 2, and comment the line above
+    # max_marble = int(data[-2]) * 100
 
     scores = defaultdict(int)
 
-    # change part 1 answer to use deque instead of implementing manual list
-    # rotation, courtesy of /u/marcusandrews
+    # change answer to use deque instead of implementing manual list rotation
+    # courtesy of /u/marcusandrews
     circle = deque([0])
 
     for marble_count in range(1, max_marble+1):
@@ -20,12 +25,11 @@ def day_9(fl):
             circle.rotate(-1)
             circle.append(marble_count)
 
-    print(f'Part 1: {max([v for v in scores.values()])}')
+    print(f'Highscore: {max([v for v in scores.values()])}')
 
 
 if __name__ == "__main__":
     filename = 'day9_input.txt'
-    # filename = 'test_input.txt'
     fl = open(filename, 'r')
     day_9(fl)
     fl.close()
