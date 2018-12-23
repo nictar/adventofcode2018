@@ -26,7 +26,7 @@ def day_11():
 
 def calculate_area_power(grid_id, grid, grid_size, x, y):
     area_power = 0
-    for sy in range(1,3):
+    for sy in range(3):
         for sx in range(1,3):
             if x+sx > grid_size or y+sy > grid_size:
                 return None
