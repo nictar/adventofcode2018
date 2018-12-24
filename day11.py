@@ -14,20 +14,24 @@ def day_11():
         for y in range(1, GRID_SIZE+1):
             sat[(x, y)] = grid[(x, y)] + sat.get((x, y-1), 0) + sat.get((x-1, y), 0) - sat.get((x-1, y-1), 0)
 
-    SQUARE_SIZE = 3
     # calculate the largest total power of each cell's area
     largest_power = -1e6
     largest_area = ()
+    largest_square = 0
     for x in range(1, GRID_SIZE+1):
         for y in range(1, GRID_SIZE+1):
-            if x+SQUARE_SIZE > GRID_SIZE or y+SQUARE_SIZE > GRID_SIZE:
-                continue
-            area_power = sat.get((x-1, y-1), 0) + sat.get((x+SQUARE_SIZE-1, y+SQUARE_SIZE-1), 0) - sat.get((x-1, y+SQUARE_SIZE-1), 0) - sat.get((x+SQUARE_SIZE-1, y-1), 0)
-            if area_power > largest_power:
-                largest_power = area_power
-                largest_area = (x, y)
+            for square_size in range(1, GRID_SIZE):
+                # to get the answer for part 1, instead of wrapping the lines
+                # below in the for loop directly above this line, change `square_size` to 3 (3x3 square)
+                if x+square_size > GRID_SIZE or y+square_size > GRID_SIZE:
+                    continue
+                area_power = sat.get((x-1, y-1), 0) + sat.get((x+square_size-1, y+square_size-1), 0) - sat.get((x-1, y+square_size-1), 0) - sat.get((x+square_size-1, y-1), 0)
+                if area_power > largest_power:
+                    largest_power = area_power
+                    largest_area = (x, y)
+                    largest_square = square_size
 
-    print(largest_area, largest_power)
+    print(largest_area, largest_square)
 
 
 def calculate_power(grid_id, x, y):
