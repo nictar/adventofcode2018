@@ -1,40 +1,33 @@
-from collections import defaultdict
-
 def day_11():
     PUZZLE_INPUT = 9221
     GRID_SIZE = 300
 
-    grid = defaultdict(int)
-    largest = defaultdict(int)
+    # calculate and record the power of each cell in the grid
+    grid = {}
+    for x in range(1, GRID_SIZE+1):
+        for y in range(1, GRID_SIZE+1):
+            grid[(x, y)] = calculate_power(PUZZLE_INPUT, x, y)
 
-    for y in range(1, GRID_SIZE+1):
-        for x in range(1, GRID_SIZE+1):
+    # setup the summed-area table
+    sat = {}
+    for x in range(1, GRID_SIZE+1):
+        for y in range(1, GRID_SIZE+1):
+            sat[(x, y)] = grid[(x, y)] + sat.get((x, y-1), 0) + sat.get((x-1, y), 0) - sat.get((x-1, y-1), 0)
 
-            # calculate the total area power of the current cell
-            if not grid[(x, y)]:
-                grid[(x, y)] = calculate_power(PUZZLE_INPUT, x, y)
-            largest[(x, y)] += grid[(x, y)]
+    SQUARE_SIZE = 3
+    # calculate the largest total power of each cell's area
+    largest_power = -1e6
+    largest_area = ()
+    for x in range(1, GRID_SIZE+1):
+        for y in range(1, GRID_SIZE+1):
+            if x+SQUARE_SIZE > GRID_SIZE or y+SQUARE_SIZE > GRID_SIZE:
+                continue
+            area_power = sat.get((x-1, y-1), 0) + sat.get((x+SQUARE_SIZE-1, y+SQUARE_SIZE-1), 0) - sat.get((x-1, y+SQUARE_SIZE-1), 0) - sat.get((x+SQUARE_SIZE-1, y-1), 0)
+            if area_power > largest_power:
+                largest_power = area_power
+                largest_area = (x, y)
 
-            area_power = calculate_area_power(PUZZLE_INPUT, grid, GRID_SIZE, x, y)
-            if area_power is None:
-                largest[(x, y)] = 0
-            else:
-                largest[(x, y)] += area_power
-
-    print(f'Part 1: {max(largest, key=largest.get)}')
-
-
-def calculate_area_power(grid_id, grid, grid_size, x, y):
-    area_power = 0
-    for sy in range(3):
-        for sx in range(1,3):
-            if x+sx > grid_size or y+sy > grid_size:
-                return None
-
-            if not grid[(x+sx, y+sy)]:
-                grid[(x+sx, y+sy)] = calculate_power(grid_id, x+sx, y+sy)
-            area_power += grid[(x+sx, y+sy)]
-    return area_power
+    print(largest_area, largest_power)
 
 
 def calculate_power(grid_id, x, y):
