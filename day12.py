@@ -1,7 +1,5 @@
-from collections import deque
-
 def day_12(fl):
-    GENERATIONS = 20
+    GENERATIONS = 150
 
     # parse the initial state
     initial = fl.readline().strip().split()[2]
@@ -16,7 +14,7 @@ def day_12(fl):
             rules.append(rule[0])
 
     # check the state of each generation
-    for _ in range(GENERATIONS):
+    for g in range(1, GENERATIONS+1):
         new_plants = []
         for i in range(plants[0]-2, plants[-1]+2):
 
@@ -26,9 +24,16 @@ def day_12(fl):
                 new_plants.append(i)
         plants = new_plants
 
-    print(f'Part 1: {sum(plants)}')
+        # special stops at certain generations for part1 and part2, because
+        # apparently for part2, a pattern emerges after a certain generation,
+        # which could be used to simplify calculating its answer
+        if g == 20:
+            print(f'Part 1: {sum(plants)}')
+        if g == 113:
+            print(f'Part 2: {(5e10 - 113)*80 + sum(plants)}')
+            break
+
 
 if __name__ == "__main__":
     with open('day12_input.txt') as fl:
-    # with open('test_input.txt') as fl:
         day_12(fl)
