@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def day_8(fl):
+def day8(fl):
     data = list(map(int, [f for f in fl.readline().strip().split()]))
 
     child_count = [data[0]]
@@ -82,5 +82,5 @@ def part_2(values, node):
 if __name__ == "__main__":
     filename = 'input_files/day8_input.txt'
     fl = open(filename, 'r')
-    day_8(fl)
+    day8(fl)
     fl.close()

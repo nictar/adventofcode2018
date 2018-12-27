@@ -1,7 +1,7 @@
 import sys
 from collections import defaultdict
 
-def day_6(fl):
+def day6(fl):
     # parse and store coordinate data
     coordinates = []
     for row in fl:
@@ -55,5 +55,5 @@ def dist(c1, c2):
 if __name__ == "__main__":
     filename = 'input_files/day6_input.txt'
     fl = open(filename, 'r')
-    day_6(fl)
+    day6(fl)
     fl.close()

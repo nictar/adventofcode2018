@@ -1,4 +1,4 @@
-def day_10(fl):
+def day10(fl):
     # max number of seconds checked ahead
     iteration_threshold = 11000
 
@@ -39,5 +39,5 @@ def day_10(fl):
 if __name__ == "__main__":
     filename = 'input_files/day10_input.txt'
     fl = open(filename, 'r')
-    day_10(fl)
+    day10(fl)
     fl.close()

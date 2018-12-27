@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def day_18(fl):
+def day18(fl):
     acres = defaultdict(int)
 
     for line in fl:
@@ -12,5 +12,5 @@ def day_18(fl):
 if __name__ == "__main__":
     filename = 'input_files/day18_input.txt'
     fl = open(filename, 'r')
-    day_18(fl)
+    day18(fl)
     fl.close()

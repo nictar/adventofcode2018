@@ -1,4 +1,4 @@
-def day_12(fl):
+def day12(fl):
     GENERATIONS = 150
 
     # parse the initial state
@@ -36,4 +36,4 @@ def day_12(fl):
 
 if __name__ == "__main__":
     with open('input_files/day12_input.txt') as fl:
-        day_12(fl)
+        day12(fl)

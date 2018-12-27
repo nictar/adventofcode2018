@@ -1,7 +1,7 @@
 from collections import defaultdict
 from itertools import combinations
 
-def day_2(fl):
+def day2(fl):
     box_ids = [x for x in fl.split()]
 
     # Part 1
@@ -64,5 +64,5 @@ def day_2(fl):
 if __name__ == "__main__":
     filename = 'input_files/day2_input.txt'
     fl = open(filename, 'r')
-    day_2(fl.read())
+    day2(fl.read())
     fl.close()

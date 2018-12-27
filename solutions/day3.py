@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def day_3(fl):
+def day3(fl):
     overlaps = 0
     area = defaultdict(int)
     ids = defaultdict(int)
@@ -41,5 +41,5 @@ def day_3(fl):
 if __name__ == "__main__":
     filename = 'input_files/day3_input.txt'
     fl = open(filename, 'r')
-    day_3(fl)
+    day3(fl)
     fl.close()

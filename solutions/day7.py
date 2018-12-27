@@ -2,7 +2,7 @@ from collections import defaultdict
 import copy
 import string
 
-def day_7(fl):
+def day7(fl):
     # parse input and store its information
     node_tuples = []
     for line in fl:
@@ -144,5 +144,5 @@ class Node():
 if __name__ == "__main__":
     filename = 'input_files/day7_input.txt'
     fl = open(filename, 'r')
-    day_7(fl)
+    day7(fl)
     fl.close()

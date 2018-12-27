@@ -1,4 +1,4 @@
-def day_5(fl):
+def day5(fl):
     data = fl.read().strip('\n')
     print('Part 1: ' + str(react_polymer(data)))
 
@@ -28,5 +28,5 @@ def react_polymer(string):
 if __name__ == "__main__":
     filename = 'input_files/day5_input.txt'
     fl = open(filename, 'r')
-    day_5(fl)
+    day5(fl)
     fl.close()

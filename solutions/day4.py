@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-def day_4(fl):
+def day4(fl):
     data = sorted(fl.split('\n')[:-1])
     guards = defaultdict(int)
     minutes = defaultdict(int)
@@ -47,5 +47,5 @@ def day_4(fl):
 if __name__ == "__main__":
     filename = 'input_files/day4_input.txt'
     fl = open(filename, 'r')
-    day_4(fl.read())
+    day4(fl.read())
     fl.close()

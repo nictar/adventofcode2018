@@ -1,6 +1,6 @@
 from itertools import cycle
 
-def day_1(fl):
+def day1(fl):
     data = [int(x) for x in fl.split()]
 
     # Part 1
@@ -23,5 +23,5 @@ def day_1(fl):
 if __name__ == "__main__":
     filename = 'input_files/day1_input.txt'
     fl = open(filename, 'r')
-    day_1(fl.read())
+    day1(fl.read())
     fl.close()

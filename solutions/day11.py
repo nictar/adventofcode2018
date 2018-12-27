@@ -1,4 +1,4 @@
-def day_11():
+def day11():
     PUZZLE_INPUT = 9221
     GRID_SIZE = 300
 
@@ -42,4 +42,4 @@ def calculate_power(grid_id, x, y):
 
 
 if __name__ == "__main__":
-    day_11()
+    day11()

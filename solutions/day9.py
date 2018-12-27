@@ -1,6 +1,6 @@
 from collections import defaultdict, deque
 
-def day_9(fl):
+def day9(fl):
     data = fl.readline().strip().split()
     max_player = int(data[0])
 
@@ -31,5 +31,5 @@ def day_9(fl):
 if __name__ == "__main__":
     filename = 'input_files/day9_input.txt'
     fl = open(filename, 'r')
-    day_9(fl)
+    day9(fl)
     fl.close()
