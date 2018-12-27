@@ -142,7 +142,7 @@ class Node():
 
 
 if __name__ == "__main__":
-    filename = 'day7_input.txt'
+    filename = 'input_files/day7_input.txt'
     fl = open(filename, 'r')
     day_7(fl)
     fl.close()

@@ -10,7 +10,7 @@ def day_18(fl):
     print(acres)
 
 if __name__ == "__main__":
-    filename = 'day18_input.txt'
+    filename = 'input_files/day18_input.txt'
     fl = open(filename, 'r')
     day_18(fl)
     fl.close()

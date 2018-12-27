@@ -29,7 +29,7 @@ def day_9(fl):
 
 
 if __name__ == "__main__":
-    filename = 'day9_input.txt'
+    filename = 'input_files/day9_input.txt'
     fl = open(filename, 'r')
     day_9(fl)
     fl.close()

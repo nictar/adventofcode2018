@@ -53,7 +53,7 @@ def dist(c1, c2):
 
 
 if __name__ == "__main__":
-    filename = 'day6_input.txt'
+    filename = 'input_files/day6_input.txt'
     fl = open(filename, 'r')
     day_6(fl)
     fl.close()

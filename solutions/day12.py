@@ -35,5 +35,5 @@ def day_12(fl):
 
 
 if __name__ == "__main__":
-    with open('day12_input.txt') as fl:
+    with open('input_files/day12_input.txt') as fl:
         day_12(fl)

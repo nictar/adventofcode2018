@@ -45,7 +45,7 @@ def day_4(fl):
 
 
 if __name__ == "__main__":
-    filename = 'day4_input.txt'
+    filename = 'input_files/day4_input.txt'
     fl = open(filename, 'r')
     day_4(fl.read())
     fl.close()

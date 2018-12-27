@@ -39,7 +39,7 @@ def day_3(fl):
 
 
 if __name__ == "__main__":
-    filename = 'day3_input.txt'
+    filename = 'input_files/day3_input.txt'
     fl = open(filename, 'r')
     day_3(fl)
     fl.close()

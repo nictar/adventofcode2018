@@ -62,7 +62,7 @@ def day_2(fl):
 
 
 if __name__ == "__main__":
-    filename = 'day2_input.txt'
+    filename = 'input_files/day2_input.txt'
     fl = open(filename, 'r')
     day_2(fl.read())
     fl.close()

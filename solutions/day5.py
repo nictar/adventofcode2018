@@ -26,7 +26,7 @@ def react_polymer(string):
 
 
 if __name__ == "__main__":
-    filename = 'day5_input.txt'
+    filename = 'input_files/day5_input.txt'
     fl = open(filename, 'r')
     day_5(fl)
     fl.close()

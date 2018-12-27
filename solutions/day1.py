@@ -21,7 +21,7 @@ def day_1(fl):
 
 
 if __name__ == "__main__":
-    filename = 'day1_input.txt'
+    filename = 'input_files/day1_input.txt'
     fl = open(filename, 'r')
     day_1(fl.read())
     fl.close()
